@@ -197,7 +197,78 @@ namespace Jakab_acs_eszter_nezoter_2021._03._22
                     }
                 }
             }
+
+            //"xo" megoldás
             Console.WriteLine($"{szamol} db egyedülálló hely van.");
+            int szamol1 = 0;
+            for (int i = 0;i<15;i++)
+            {
+                for (int m = 0;m<20;m++)
+                {
+                    if (m == 0)
+                    {
+                        if (adatok[i].foglaltsag.Substring(m,2) == "ox")
+                        {
+                            szamol1++;
+                        }
+                    }
+                    if (adatok[i].foglaltsag[m] == 'o')
+                    {
+                        if (m == 17)
+                        {
+                            szamol1++;
+                        }
+                    }
+                    else
+                    {
+                        if (m < 17)
+                        {
+                            if (adatok[i].foglaltsag.Substring(m, 3) == "xox")
+                            {
+                                szamol1++;
+                                m++;
+                            }
+                        }
+
+                        if (m == 17)
+                        {
+                            if (adatok[i].foglaltsag.Substring(m, 2) == "xo")
+                            {
+                                szamol1++;
+                            }
+                        }
+                    }
+                }
+            }
+            Console.WriteLine($"{szamol1} db egyedülálló hely van.");
+
+            //7.feladat
+            Console.WriteLine($"7.feladat\nKiírás kész!");
+            StreamWriter ir = new StreamWriter(@"E:\OneDrive - Kisvárdai SZC Móricz Zsigmond Szakgimnáziuma és Szakközépiskolája\Oktatas\Programozas\Jakab_Acs_Eszter\Erettsegi_feladatok\2014-oktober_uj\szabad.txt");
+            string foglalt  = null;
+            for (int i = 0; i<15; i++)
+            {
+                for (int k = 0; k<20;k++)
+                {
+                    if (adatok[i].foglaltsag[k] == 'x')
+                    {
+                        foglalt += adatok[i].kategoria[k];
+                    }
+                    else
+                    {
+                        foglalt += adatok[i].foglaltsag[k];
+                    }
+                }
+                ir.WriteLine(foglalt);
+                foglalt = null;
+            }
+            ir.Close();
+            /*for (int i = 0;i<foglalt.Length;i += 20)
+            {
+                Console.Write(foglalt.Substring(i,20));
+                Console.WriteLine();
+            }*/
+            //Console.WriteLine($"7.feladat\n{foglalt}");
             Console.ReadKey();
         }
     }
